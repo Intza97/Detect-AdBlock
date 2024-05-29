@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+  <!--==================== METADATOS ====================-->
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <meta name="description" content="Detect-AdBlock">
+      <meta name="keywords" content="HTML-CSS-JS">
+      <meta name="author" content="Rocio Cuello">
+      
+      <!--==================== CSS ====================-->
+      <link rel="stylesheet" href="assets/css/style.css">
+
+      <!--==================== TITULO ====================-->
+      <title>Detect-AdBlock</title>
+
+      <!--==================== ICONO DE PESTAÑA ====================-->
+      <link rel="icon" sizes="64x64" href="assets/img/favicon.webp"> 
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    </head>
+    <body>
+      <div id="detect"></div>
+      <div class="wrapper">
+        <div class="content">
+          <div class="warn-icon">
+            <span class="icon"><i class="fas fa-exclamation"></i></span>
+          </div>
+          <h2>¡AdBlock Detectado!</h2>
+          <p>Nuestro sitio web es posible gracias a la exhibición de anuncios para nuestros visitantes. Por favor, apóyanos agregando nuestro sitio web a la lista blanca.</p>
+          <div class="btn">
+            <div class="bg-layer"></div>
+            <button>De acuerdo, agregaré a la lista blanca</button>
+          </div>
+        </div>
+      </div>
+    <!--==================== script ====================-->
+    <script>
+      const detect = document.querySelector("#detect");
+      const wrapper = document.querySelector(".wrapper");
+      const button = wrapper.querySelector("button");
+      let adClasses = ["ad", "ads", "adsbox", "doubleclick", "ad-placement", "ad-placeholder", "adbadge", "BannerAd"];
+      for(let item of adClasses){
+        detect.classList.add(item);
+      }
+      let getProperty = window.getComputedStyle(detect).getPropertyValue("display");
+      if(!wrapper.classList.contains("show")){
+        getProperty == "none" ? wrapper.classList.add("show") : wrapper.classList.remove("show");
+      }
+      button.addEventListener("click", ()=>{
+        wrapper.classList.remove("show");
+      });
+    </script>
+      
+  </body>
+</html>
